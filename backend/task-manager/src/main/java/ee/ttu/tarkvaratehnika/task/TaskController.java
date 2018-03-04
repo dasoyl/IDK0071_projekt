@@ -13,7 +13,7 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @RequestMapping(value="/tasks/add", method= RequestMethod.POST, consumes="application/json")
+    @RequestMapping(value="/tasks/add", method=RequestMethod.POST, consumes="application/json")
     public Task addTask(@RequestBody Task task) {
         return taskService.addTask(task);
     }
