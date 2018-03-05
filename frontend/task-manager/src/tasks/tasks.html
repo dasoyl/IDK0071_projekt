@@ -1,0 +1,79 @@
+﻿<template>
+   
+    <div class="container">
+    
+       <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h2 class="panel-title">${film.title}</h2>
+        </div>
+    
+	    <div class="row">
+	    
+	        <br/>
+	        <br/>
+
+		    <div class="col-md-offset-1 col-md-3 highlight">
+		    
+		      
+		    	<div class="text-success">
+		    		Seen? <span class="glyphicon glyphicon-${film.seen ? 'ok' : 'remove' }" aria-hidden="true"></span>
+		    	</div>
+		    	<br/>
+		    	<div if.bind="film.seen">    		
+		    		<strong class="text-success" >Rate: </strong> <span repeat.for="i of range(film.rate)" class="text-danger glyphicon glyphicon-star"> </span>
+		    	</div>
+		    	<br/>		    	
+		    	<div if.bind="film.seen" class="text-success">    		
+		    		<strong class="text-success" >Favourite: </strong> Yesss! <span class="text-danger glyphicon glyphicon-heart" aria-hidden="true"></span> 
+		    	</div>
+		    	<br/>
+		    	<div if.bind="!film.seen" class="text-info">
+		    		<strong>Interest: </strong> <span repeat.for="i of range(film.interestLevel)" class="glyphicon glyphicon-eye-open"> </span>
+		    	</div>
+		    	<br/>
+		    </div>
+		    
+		      <br/>
+
+		    <div class="col-md-offset-1 col-md-3" show.bind="details.title">
+		    	<div>
+		    		<strong>Title: </strong>${details.title}
+		    	</div>
+		    	<div>
+		    		<strong>Year: </strong>${details.year}
+		    	</div>
+		    	<div>
+		    		<strong>Type: </strong> ${details.type}</a>
+		    	</div>
+		    	<div>
+		    		<strong>IMDB: </strong> <a href="${details.imdbUrl}" target="_blank">${details.title}</a>
+		    	</div>
+		    </div>
+
+		    <div class="col-md-offset-1 col-md-3 highlight">
+	    		<img src="${details.poster}" />
+	    	</div>
+	    	
+	    	
+	    	 <div class="col-md-offset-2 col-md-3 highlight">
+	    		<img src="${details.poster}" />
+	    	 </div>
+	    	
+
+		</div>
+		
+		<br/>
+		<br/>
+		<br/>
+
+        &nbsp;&nbsp;&nbsp;<a route-href="route: edit; params.bind: {id:film.id}" class="btn btn-primary">Edit</a>
+        &nbsp;&nbsp;&nbsp;<a route-href="route:home" class="btn btn-info">Back to list</a>
+        &nbsp;&nbsp;&nbsp;<a click.delegate="loadDetails()" class="btn btn-danger">Load up details</a>
+		    
+		<br/>    
+		<br/> 
+		    
+		</div>    
+	  </div>	    
+    </div>
+</template>

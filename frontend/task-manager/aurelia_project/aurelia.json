@@ -1,5 +1,5 @@
 {
-  "name": "main",
+  "name": "new",
   "type": "project:application",
   "bundler": {
     "id": "cli",
@@ -39,25 +39,12 @@
             "path": "node_modules/aurelia-cli/lib/resources/scripts/configure-bluebird.js",
             "env": "dev"
           },
-		  "node_modules/popper.js/dist/umd/popper.min.js",
           "node_modules/requirejs/require.js"
         ],
         "dependencies": [
+		  "aurelia-http-client",
+		  "aurelia-bootstrap",
           "aurelia-binding",
-		  "jquery",
-			{
-				"name": "bootstrap",
-				"path": "../node_modules/bootstrap/dist",
-				"main": "js/bootstrap.min.js",
-				"deps": [
-					"jquery"
-				],
-				"exports": "$",
-				"resources": [
-				"css/bootstrap.css"
-				]
-			},
-          "sweetalert2",
           "aurelia-bootstrapper",
           "aurelia-dependency-injection",
           "aurelia-event-aggregator",
@@ -83,6 +70,11 @@
             "path": "../node_modules/aurelia-templating-resources/dist/amd",
             "main": "aurelia-templating-resources"
           },
+		  {
+			"name": "aurelia-validation",
+            "path": "../node_modules/aurelia-validation/dist/amd",
+            "main": "aurelia-validation"
+		  },
           {
             "name": "aurelia-templating-router",
             "path": "../node_modules/aurelia-templating-router/dist/amd",
@@ -94,6 +86,16 @@
             "main": "aurelia-testing",
             "env": "dev"
           },
+		  "velocity-animate",
+		  "tether",
+		   {
+			"name": "aurelia-bootstrap",
+			"path": "../node_modules/aurelia-bootstrap/dist/amd",
+			"main": "index",
+			"resources": [
+				"**/*.html"
+			]
+		   },
           "text"
         ]
       }
@@ -133,8 +135,8 @@
     "source": "src/**/*.js"
   },
   "markupProcessor": {
-    "id": "minimum",
-    "displayName": "Minimal Minification",
+    "id": "none",
+    "displayName": "None",
     "fileExtension": ".html",
     "source": "src/**/*.html"
   },

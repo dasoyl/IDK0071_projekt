@@ -1,3 +1,3 @@
-export function configure(config) {
-  //config.globalResources([]);
+﻿export function configure(aurelia) {
+    aurelia.globalResources("./nav-menu");
 }
