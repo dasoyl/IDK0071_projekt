@@ -1,4 +1,8 @@
 export class App {
+  constructor() {
+      this.userName = "TEST_USER";
+  }
+  
   configureRouter(config, router){
         config.title = 'Tasks';
         config.map([
