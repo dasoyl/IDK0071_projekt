@@ -1,5 +1,5 @@
 export class Home {
     constructor() {
-        this.message = "Please Select a Contact.";
+        this.message = "Welcome to the task manager application.";
     }
 }
