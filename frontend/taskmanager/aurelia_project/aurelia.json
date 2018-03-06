@@ -46,6 +46,7 @@
           "aurelia-bootstrapper",
           "aurelia-dependency-injection",
           "aurelia-event-aggregator",
+          "aurelia-fetch-client",
           "aurelia-framework",
           "aurelia-history",
           "aurelia-history-browser",
@@ -79,7 +80,23 @@
             "main": "aurelia-testing",
             "env": "dev"
           },
-          "text"
+          "text",
+          "jquery",
+          {
+            "name": "popper.js",
+            "path": "../node_modules/popper.js/dist/umd",
+            "main": "popper"
+          },
+          {
+            "name": "bootstrap",
+            "path": "../node_modules/bootstrap/dist",
+            "main": "js/bootstrap.min",
+            "deps": ["jquery", "popper.js"],
+            "exports": "$",
+            "resources": [
+                "css/bootstrap.css"
+            ]
+          }
         ]
       }
     ],
