@@ -1,8 +1,16 @@
 <template>
-  <form id="userform" submit.delegate="addUser()">
-  		<div><label for="firstName">First name</label><input id="firstName" type="text" name="firstName" value.bind="userData.firstName"></div>
-  		<div><label for="lastName">Last name</label><input id="lastName" type="text" name="lastName" value.bind="userData.lastName"></div>
-  		<div><label for="numOfPets">Num of pets</label><input id="numOfPets" type="number" name="numOfPets" value.bind="userData.numOfPets"></div>
-  		<input type="submit" name="Lisa kasutaja">
+  <form id="userform" submit.delegate="addTask()">
+  		<div><label for="title">Title</label><input id="title" type="text" name="title" value.bind="taskData.title"></div>
+  		<div><label for="description">Description</label><input id="description" type="text" name="description" value.bind="taskData.description"></div>
+  		<div><label for="author"></label><input id="author" type="hidden" name="author" value=${userName}></div>
+  		<input type="submit" name="SAVE TASK">
   </form>
+
+  <p>
+		<h3>TASKS:</h3>
+		<ul>
+			<li repeat.for="task of taskList">${task.title} ${task.description}</li>
+		</ul>
+</p>
+
 </template>
