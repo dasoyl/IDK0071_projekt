@@ -17,5 +17,5 @@ public class Task {
     String title;
     String description;
     String author;
-    boolean completed;
+    boolean completed = false;
 }
