@@ -5,7 +5,9 @@ export class Tasks{
 	taskData = {}
 	taskData = {};
 	taskList = [];
-	showAuthor = false;
+	showAuthor = true;
+	isImportant;
+	isUrgent;
 
 	constructor() {}
 
@@ -31,6 +33,7 @@ export class Tasks{
 				this.taskData = {};
 				this.activate();
 				this.showAuthor = true;
+				
 		});
 	}
 }
