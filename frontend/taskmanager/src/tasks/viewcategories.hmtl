@@ -1,0 +1,13 @@
+<template>
+  <require from="bootstrap/css/bootstrap.css"></require>
+  <p style="margin-top: 40px">
+		<h3 style="text-align: center">TASKS:</h3>
+    	<div repeat.for="task of taskList" class="col-sm-4 mx-auto">
+	    	<div class="card">
+	      		<div class="card-body">
+	        		<h5 class="card-title">${task.title}</h5>
+      			</div>
+    		</div>
+    	</div>
+  </p>
+</template>

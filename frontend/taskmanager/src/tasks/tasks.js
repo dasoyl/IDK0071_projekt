@@ -2,9 +2,10 @@ import {HttpClient, json} from 'aurelia-fetch-client'
 
 export class Tasks{
 
-	taskData = {}
 	taskData = {};
 	taskList = [];
+	categoryData = {};
+	categoryList = [];
 	showAuthor = true;
 	isImportant;
 	isUrgent;
@@ -18,6 +19,8 @@ export class Tasks{
 			//.error(error => alert(error))
 			.then(response => response.json())
 			.then(tasks => this.taskList = tasks);
+		    .then(category => this.categoryList = category);
+		    
 	}
 
 	addTask() {
@@ -33,7 +36,7 @@ export class Tasks{
 				this.taskData = {};
 				this.activate();
 				this.showAuthor = true;
-				
 		});
 	}
+	
 }
