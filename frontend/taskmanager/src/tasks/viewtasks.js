@@ -9,9 +9,29 @@ export class ViewTasks{
 	activate() {
 		let client = new HttpClient();
 
-		client.fetch('http://localhost:8080/tasks')
+		client.fetch('http://localhost:8080/tasks?completed=false')
 			.then(response => response.json())
-			.then(tasks => this.taskList = tasks);
+			.then(tasks => {
+				for (let row of tasks){
+					row.isUrgent = row.urgent;
+					row.isImportant = row.important;
+				}
+				this.taskList = tasks;
+			});
 	}
-}
+	updateTask(task){
+		let client = new HttpClient();
+		task.urgent = task.isUrgent;
+		task.important = task.isImportant;
+		client.fetch('http://localhost:8080/tasks/' + Number(task.id), {
+			'method': "POST",
+			'body': json(task)
+		})
+			.then(response => response.json())
+			.then(data => {
+				//alert("Saved!");
+				this.activate();
+		});
+	}
 
+}

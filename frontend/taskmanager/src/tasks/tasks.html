@@ -12,14 +12,14 @@
 	     	<input id="description" type="text" class="form-control" name="description" value.bind="taskData.description">
 	   	</div>
 	   	<div class="form-group col-md-4 mx-auto">
-	 		<input id="isImportant" type="checkbox" name="isImportant" checked.bind="isImportant">Is task important? 
-		    <label if.bind =isImportant style='color:red;'>     Importance level HIGH </label>
-		    <label if.bind =!isImportant style='color:green;'>    Importance level LOW </label>
+	 		<input id="isImportant" type="checkbox" name="isImportant" checked.bind="taskData.important">Is task important? 
+		    <label if.bind ="taskData.important" style='color:red;'>     Importance level HIGH </label>
+		    <label if.bind ="!taskData.important" style='color:green;'>    Importance level LOW </label>
 	   	</div>
 	   	<div class="form-group col-md-4 mx-auto">
-	 		<input type="checkbox" id="isUrgent" name="isUrgent" checked.bind = "isUrgent">Is task urgent?  
-	 		<label if.bind = isUrgent style='color:red;'>     Urgent</label>
-	     	<label if.bind = !isUrgent style='color:green;'>     Not Urgent</label>
+	 		<input type="checkbox" id="isUrgent" name="isUrgent" checked.bind="taskData.urgent">Is task urgent?  
+	 		<label if.bind = "taskData.urgent" style='color:red;'>     Urgent</label>
+	     	<label if.bind = "!taskData.urgent" style='color:green;'>     Not Urgent</label>
 	   	</div>
 	    <div class="form-group col-md-4 mx-auto" if.bind="showAuthor">
 	 		<label for="author">Author</label>
@@ -29,16 +29,16 @@
 	     	<button type="submit" class="btn btn-primary">SAVE TASK</button>
 	   	</div>
 	</form>
-	<p>
-	 <p style="margin-top: 40px">
+	 <div if.bind="addedTaskData != null" style="margin-top: 40px">
 		<h3 style="text-align: center">TASK SAVED:</h3>
-    <div "taskList.last" class="col-sm-4 mx-auto">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">${task.title}</h5>
-        <p class="card-text">${task.description}</p>
-      </div>
-    </div>
-  </p>
-	</p>
+	    <div class="col-sm-4 mx-auto">
+		    <div class="card">
+		      <div class="card-body">
+		        <h4 class="card-title">${addedTaskData.id}</h4>
+		        <h5 class="card-title">${addedTaskData.title}</h5>
+		        <p class="card-text">${addedTaskData.description}</p>
+		      </div>
+		    </div>
+	    </div>
+	  </div>
 </template>

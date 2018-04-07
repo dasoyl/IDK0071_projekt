@@ -17,7 +17,7 @@ public class Task {
     String title;
     String description;
     String author;
-    boolean isImportant = false;
-    boolean isUrgent = false;
+    boolean important = false;
+    boolean urgent = false;
     boolean completed = false;
 }

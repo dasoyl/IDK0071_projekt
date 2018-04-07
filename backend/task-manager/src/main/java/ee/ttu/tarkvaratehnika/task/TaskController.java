@@ -19,12 +19,17 @@ public class TaskController {
     }
 
     @RequestMapping(value="/tasks", method=RequestMethod.GET)
-    public List<Task> getAllTasks() {
-        return taskService.getAllTasks();
+    public List<Task> getAllTasks(@RequestParam("completed") boolean completed) {
+        return taskService.getTasksByCompleted(completed);
     }
 
     @RequestMapping(value="/tasks/{id}", method=RequestMethod.GET)
     public Task getTask(@PathVariable("id") long taskId) {
         return taskService.getTaskById(taskId);
+    }
+    
+    @RequestMapping(value="/tasks/{id}", method=RequestMethod.POST)
+    public Task getTask(@PathVariable("id") long taskId, @RequestBody Task task) {
+        return taskService.updateTask(taskId, task);
     }
 }

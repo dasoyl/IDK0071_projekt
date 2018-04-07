@@ -7,6 +7,5 @@ import java.util.List;
 
 @Repository
 public interface TaskRepository extends CrudRepository<Task, Long> {
-    @Override
-    public List<Task> findAll();
+    public List<Task> findByCompleted(boolean completed);
 }
