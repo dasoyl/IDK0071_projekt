@@ -22,40 +22,56 @@
 		<tr>
 			<td width=350 valign=Top style='width:262pt'>
 	  			<p class=MsoNormal>
-		  			<div repeat.for="task of taskList"  if.bind="isUrgent">
-		        		<div class="card">
-		    				<div class="card-body">
-		            			<h3 class="card-title">${task.title}</h3>
-		        				<p class="card-text">${task.description}</p>
-		        				<div class="col-md-4 mx-auto">
-		        					<input id="isCompleted" type="checkbox" class="form-control" name="isCompleted" data-bind	= "checked: taskData.isCompleted">${task.completed}<input id="update" type="button" onclick="updateTask();"/>
-		    					</div>
-		    				</div>
-	    				</div>
+		  			<div repeat.for="task of taskList" if.bind="task.urgent && task.important">
+            			<div class="card">
+    						<div class="card-body">
+            						<form id="taskform" submit.delegate="updateTask(task)">
+            						<h3 class="card-title">${task.title}</h3>
+        							<div >
+								 		<input id="description" type="text" class="form-control" name="description" value.bind="task.description" placeholder="">
+								   	</div>
+								   	<p></p>
+	        						<div>
+	        							<input id="isCompleted" type="checkbox" name="isCompleted" checked.bind="task.completed"> Status: 
+      									<label if.bind="task.completed">  Task Completed </label>
+      									<label if.bind="!task.completed">  Task in progress </label>
+      									<br/>
+      									<input id="isUrgent" type="checkbox" name="isUrgent" checked.bind="task.isUrgent"> Urgent?
+      									<br/>
+      									<input id="isImportant" type="checkbox" name="isImportant" checked.bind="task.isImportant"> Important?
+      									<br/>
+      									<button type="submit" id="update" class="btn btn-primary">UPDATE</button>
+      								</div>
+      					   	</div>
+      					</div>
     				</div>
 	    		</p>
 	  		</td>
 	 		<td width=350 valign=Top style='width:262pt'>
 	  			<p class=MsoNormal>
-
-						<div repeat.for="task of taskList"  if.bind="!isUrgent" and if.bind="isImportant">
-	            			<div class="card">
-	    						<div class="card-body">
-	            						<form id="taskform" submit.delegate="updateTask()">
-	            						<h3 class="card-title">${task.title}</h3>
-	        							<div >
-									 		<input id="description" type="text" class="form-control" name="description" value.bind="taskData.description" placeholder="taskData.description">
-									   	</div>
-									   	<p></p>
-		        						<div>
-		        							<input id="isCompleted" type="checkbox" name="isCompleted" checked.bind = "completed"> Status: 
-	      									<label if.bind =completed>  Task Completed </label>
-	      									<label if.bind =!completed>  Task in progress </label>
-	      									<button type="submit" id="update" class="btn btn-primary">UPDATE</button>
-	      								</div>
-	      					   	</div>
-	      					</div>
-	      				</div>	   			 
+					<div repeat.for="task of taskList"  if.bind="!task.urgent && task.important">
+            			<div class="card">
+    						<div class="card-body">
+            						<form id="taskform" submit.delegate="updateTask(task)">
+            						<h3 class="card-title">${task.title}</h3>
+        							<div >
+								 		<input id="description" type="text" class="form-control" name="description" value.bind="task.description" placeholder="">
+								   	</div>
+								   	<p></p>
+	        						<div>
+	        							<input id="isCompleted" type="checkbox" name="isCompleted" checked.bind="task.completed"> Status: 
+      									<label if.bind="task.completed">  Task Completed </label>
+      									<label if.bind="!task.completed">  Task in progress </label>
+      									<br/>
+      									<input id="isUrgent" type="checkbox" name="isUrgent" checked.bind="task.isUrgent"> Urgent?
+      									<br/>
+      									<input id="isImportant" type="checkbox" name="isImportant" checked.bind="task.isImportant"> Important?
+      									<br/>
+      									<button type="submit" id="update" class="btn btn-primary">UPDATE</button>
+      								</div>
+      					   	</div>
+      					</div>
+      				</div>	   			 
 	   			</p>
 	  		</td>
 		</tr>
@@ -76,40 +92,58 @@
 			</td>
 	 	</tr>
 	 	<tr>
-	  		<td width=350 valign=Top style='width:262pt;>
-	  			<p class=MsoNormal>
-		  			<span lang=en-US style='language:en-US'>&nbsp; 
-		  				<div repeat.for="task of taskList"  if.bind="isUrgent" and if.bind="!isImportant">
-		            		<div class="card">
-		    					<div class="card-body">
-		            				<input id="isCompleted" type="checkbox" class="form-control" name="isCompleted" data-bind	= "checked: taskData.isCompleted">
-		            				<h5 class="card-title">${task.title}</h5>
-		        					<p class="card-text">${task.description}</p>
-				        			<div class="col-md-4 mx-auto">
-				      					<button type="submit" class="btn btn-primary">EDIT TASK</button>
-				    				</div>
-		    					</div>
-	    					</div>
-	   					</div>
-		    		</span>
+	  		<td width=350 valign=Top style='width:262pt;'>
+	  			<p class=MsoNormal> 
+	  				<div repeat.for="task of taskList" if.bind="task.urgent && !task.important">
+            			<div class="card">
+    						<div class="card-body">
+            						<form id="taskform" submit.delegate="updateTask(task)">
+            						<h3 class="card-title">${task.title}</h3>
+        							<div >
+								 		<input id="description" type="text" class="form-control" name="description" value.bind="task.description" placeholder="">
+								   	</div>
+								   	<p></p>
+	        						<div>
+	        							<input id="isCompleted" type="checkbox" name="isCompleted" checked.bind="task.completed"> Status: 
+      									<label if.bind="task.completed">  Task Completed </label>
+      									<label if.bind="!task.completed">  Task in progress </label>
+      									<br/>
+      									<input id="isUrgent" type="checkbox" name="isUrgent" checked.bind="task.isUrgent"> Urgent?
+      									<br/>
+      									<input id="isImportant" type="checkbox" name="isImportant" checked.bind="task.isImportant"> Important?
+      									<br/>
+      									<button type="submit" id="update" class="btn btn-primary">UPDATE</button>
+      								</div>
+      					   	</div>
+      					</div>
+   					</div>
 	    		</p>
 	  		</td>
-	  		<td width=350 valign=Top style='width:262pt;>
+	  		<td width=350 valign=Top style='width:262pt;'>
 	  			<p class=MsoNormal>
-	  				<span lang="en-US" style='language:en-US'>
-	  					<div repeat.for="task of taskList"  if.bind="!isUrgent" and if.bind="!isImportant">
-	            			<div class="card">
-	    						<div class="card-body">
-	            					<input id="isCompleted" type="checkbox" class="form-control" name="isCompleted" data-bind	= "checked: taskData.isCompleted">
-	            					<h5 class="card-title">${task.title}</h5>
-	        						<p class="card-text">${task.description}</p>
-				        			<div class="col-md-4 mx-auto">
-				      					<button type="submit" class="btn btn-primary">EDIT TASK</button>
-				    				</div>
-	        					</div>
-	       					</div>
-	  					</div>
-	  				</span>
+  					<div repeat.for="task of taskList"  if.bind="!task.urgent && !task.important">
+            			<div class="card">
+    						<div class="card-body">
+            						<form id="taskform" submit.delegate="updateTask(task)">
+            						<h3 class="card-title">${task.title}</h3>
+        							<div>
+								 		<input id="description" type="text" class="form-control" name="description" value.bind="task.description" placeholder="">
+								   	</div>
+								   	<p></p>
+	        						<div>
+	        							<input id="isCompleted" type="checkbox" name="isCompleted" checked.bind="task.completed"> Status: 
+      									<label if.bind="task.completed">  Task Completed </label>
+      									<label if.bind="!task.completed">  Task in progress </label>
+      									<br/>
+      									<input id="isUrgent" type="checkbox" name="isUrgent" checked.bind="task.isUrgent"> Urgent?
+      									<br/>
+      									<input id="isImportant" type="checkbox" name="isImportant" checked.bind="task.isImportant"> Important?
+      									<br/>
+      									<button type="submit" id="update" class="btn btn-primary">UPDATE</button>
+      								</div>
+      					   	</div>
+      					</div>
+  					</div>
 				</p>
 	  		</td>
 	 	</tr>

@@ -3,16 +3,16 @@ import {HttpClient, json} from 'aurelia-fetch-client'
 export class Tasks{
 
 	taskData = {}
-	taskList = []
+	addedTaskData = null;
 
 	constructor() {}
 
 	activate() {
-		let client = new HttpClient();
-
-		client.fetch('http://localhost:8080/tasks')
-			.then(response => response.json())
-			.then(tasks => this.taskList = tasks);
+//		let client = new HttpClient();
+//
+//		client.fetch('http://localhost:8080/tasks')
+//			.then(response => response.json())
+//			.then(tasks => this.taskList = tasks);
 	}
 
 	addTask() {
@@ -24,7 +24,8 @@ export class Tasks{
 		})
 			.then(response => response.json())
 			.then(data => {
-				console.log("Received task: " + data.title);
+				this.addedTaskData = data;
+				//console.log("Received task: " + data.title);
 		});
 	}
 }
