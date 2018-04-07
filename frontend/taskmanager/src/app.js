@@ -7,8 +7,9 @@ export class App {
         config.title = 'Tasks';
         config.map([
           { route: '',              moduleId: 'home',   title: 'Home', nav:true},
-          { route: 'tasks',  moduleId: 'tasks/tasks', title: 'Tasks', nav:true}
-        ]);
+          { route: 'tasks',  moduleId: 'tasks/tasks', title: 'Tasks', nav:true},
+          { route: 'viewtasks',  moduleId: 'tasks/viewtasks', title: 'View Tasks', nav:true},
+       ]);
 
         this.router = router;
       }
