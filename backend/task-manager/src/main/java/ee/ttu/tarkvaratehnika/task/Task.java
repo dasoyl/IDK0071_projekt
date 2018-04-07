@@ -16,7 +16,6 @@ public class Task {
     long id;
     String title;
     String description;
-    String category;
     String author;
     boolean isImportant = false;
     boolean isUrgent = false;

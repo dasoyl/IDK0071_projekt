@@ -1,45 +1,44 @@
 <template>
-  <require from="bootstrap/css/bootstrap.css"></require>
-<p>
-</p>
-
-  <form id="userform" submit.delegate="addTask()">
-    <div class="form-group col-md-4 mx-auto">
-  		<label for="title">Title</label>
-      <input id="title" type="text" class="form-control" name="title" value.bind="taskData.title">
+  	<require from="bootstrap/css/bootstrap.css"></require>
+	<p>
+	</p>
+	<form id="userform" submit.delegate="addTask()">
+	   	<div class="form-group col-md-4 mx-auto">
+	 		<label for="title">Title</label>
+	     	<input id="title" type="text" class="form-control" name="title" value.bind="taskData.title">
+	   	</div>
+	   	<div class="form-group col-md-4 mx-auto">
+	 		<label for="description">Description</label>
+	     	<input id="description" type="text" class="form-control" name="description" value.bind="taskData.description">
+	   	</div>
+	   	<div class="form-group col-md-4 mx-auto">
+	 		<input id="isImportant" type="checkbox" name="isImportant" checked.bind="isImportant">Is task important? 
+		    <label if.bind =isImportant style='color:red;'>     Importance level HIGH </label>
+		    <label if.bind =!isImportant style='color:green;'>    Importance level LOW </label>
+	   	</div>
+	   	<div class="form-group col-md-4 mx-auto">
+	 		<input type="checkbox" id="isUrgent" name="isUrgent" checked.bind = "isUrgent">Is task urgent?  
+	 		<label if.bind = isUrgent style='color:red;'>     Urgent</label>
+	     	<label if.bind = !isUrgent style='color:green;'>     Not Urgent</label>
+	   	</div>
+	    <div class="form-group col-md-4 mx-auto" if.bind="showAuthor">
+	 		<label for="author">Author</label>
+	     	<input id="author" type="text" class="form-control" name="author" placeholder=${userName} value.bind="taskData.author">
+	   	</div>
+	   	<div class="col-md-4 mx-auto">
+	     	<button type="submit" class="btn btn-primary">SAVE TASK</button>
+	   	</div>
+	</form>
+	<p>
+	 <p style="margin-top: 40px">
+		<h3 style="text-align: center">TASK SAVED:</h3>
+    <div "taskList.last" class="col-sm-4 mx-auto">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">${task.title}</h5>
+        <p class="card-text">${task.description}</p>
+      </div>
     </div>
-    <div class="form-group col-md-4 mx-auto">
-  		<label for="description">Description</label>
-      <input id="description" type="text" class="form-control" name="description" value.bind="taskData.description">
-    </div>
-   
-    <div class="form-group col-md-4 mx-auto">
-  		<label for="category">Category</label>
-      <input id="category" type="text" class="form-control" name="category" value.bind="taskData.category">
-    </div>
-    <div class="form-group col-md-4 mx-auto">
-  		<label for="isImportant">Is task important?</label>
-      <input id="isImportant" type="checkbox" class="form-control" name="isImportant" checked.bind="isImportant">
-      <label if.bind =isImportant> Importance level HIGH </label>
-      <label if.bind =!isImportant> Importance level LOW </label>
-    </div>
-    <div class="form-group col-md-4 mx-auto">
-  		<label for="isUrgent">Is task urgent?</label>
-      <input id="isUrgent" type="checkbox" class="form-control" checked.bind = "isUrgent">
-      <label if.bind = isUrgent> Urgent</label>
-      <label if.bind = !isUrgent> Not Urgent</label>
-    </div>
-    
-    <div class="form-group col-md-4 mx-auto" if.bind="showAuthor">
-  		<label for="author">Author</label>
-      <input id="author" type="text" class="form-control" name="author" placeholder=${userName} value.bind="taskData.author">
-    </div>
-    <div class="col-md-4 mx-auto">
-      <button type="submit" class="btn btn-primary">SAVE TASK</button>
-    </div>
-  </form>
-
-  <p>
   </p>
-
+	</p>
 </template>
