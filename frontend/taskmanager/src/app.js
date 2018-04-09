@@ -9,6 +9,7 @@ export class App {
           { route: '',              moduleId: 'home',   title: 'Home', nav:true},
           { route: 'tasks',  moduleId: 'tasks/tasks', title: 'Tasks', nav:true},
           { route: 'viewtasks',  moduleId: 'tasks/viewtasks', title: 'View Tasks', nav:true},
+          { route: 'completedtasks',  moduleId: 'tasks/completedtasks', title: 'Completed Tasks', nav:true}
        ]);
 
         this.router = router;
