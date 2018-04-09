@@ -1,0 +1,38 @@
+<template>
+	<require from="bootstrap/css/bootstrap.css"></require>
+	<p>
+	</p>
+	<h3>COMPLETED TASKS LIST</h3>
+	<table v:shapes="_x0000_s1025" width=754 dir=ltr style='width:566pt; position:absolute;top:550	pt;left:12.6pt;z-index:1'>
+		<tr>
+			<td width=350 valign=Top bgcolor="#FFC000" style='width:262 pt;background:#FFC000'>
+				<p class=MsoNormal>
+				<div repeat.for="task of taskList">
+				     <div class="card">
+						<div class="card-body">
+				     		<form id="taskform" submit.delegate="updateTask(task)">
+						 		<div >
+							 		<input id="title" type="text" class="form-control" name="title" value.bind="task.title" placeholder="">
+							   	</div>
+								<div >
+							 		<input id="description" type="text" class="form-control" name="description" value.bind="task.description" placeholder="">
+							   	</div>
+					   			<p></p>
+				  				<div>
+				  					<input id="isCompleted" type="checkbox" name="isCompleted" checked.bind="task.completed"> Status: 
+										<label if.bind="task.completed">  Task Completed </label>
+										<label if.bind="!task.completed">  Task in progress </label>
+										<br/>
+										<input id="isUrgent" type="checkbox" name="isUrgent" checked.bind="task.isUrgent"> Urgent?
+										<br/>
+										<input id="isImportant" type="checkbox" name="isImportant" checked.bind="task.isImportant"> Important?
+										<br/>
+										<button type="submit" id="update" class="btn btn-primary">UPDATE</button>
+								</div>
+					   	</div>
+					</div>
+				</div>
+				</p>
+	 	</tr>
+	</table>
+</template>
