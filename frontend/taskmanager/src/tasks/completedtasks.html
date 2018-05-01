@@ -2,6 +2,15 @@
 	<require from="bootstrap/css/bootstrap.css"></require>
 	<p>
 	</p>
+	<form id="userform" submit.delegate="search()">
+	   	<div class="form-group col-md-4 mx-auto">
+	 		<label for="search">Search</label>
+	     	<input id="search" type="text" class="form-control" name="search" value.bind="searchString">
+	   	</div>
+	   		<div class="col-md-4 mx-auto">
+	     	<button type="submit" class="btn btn-primary">SEARCH</button>
+	   	</div>
+   	</form>
 	<h3>COMPLETED TASKS LIST</h3>
 	<table v:shapes="_x0000_s1025" width=754 dir=ltr style='width:566pt; position:absolute;top:550	pt;left:12.6pt;z-index:1'>
 		<tr>

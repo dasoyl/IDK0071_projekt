@@ -8,11 +8,11 @@ export class Tasks{
 	constructor() {}
 
 	activate() {
-//		let client = new HttpClient();
+	//	let client = new HttpClient();
 //
-//		client.fetch('http://localhost:8080/tasks')
-//			.then(response => response.json())
-//			.then(tasks => this.taskList = tasks);
+	//	client.fetch('http://localhost:8080/tasks')
+		//	.then(response => response.json())
+			//.then(tasks => this.taskList = tasks);
 	}
 
 	addTask() {
@@ -25,7 +25,12 @@ export class Tasks{
 			.then(response => response.json())
 			.then(data => {
 				this.addedTaskData = data;
+				this.taskData = null;
 				//console.log("Received task: " + data.title);
+				
+				
 		});
+		
+		
 	}
 }

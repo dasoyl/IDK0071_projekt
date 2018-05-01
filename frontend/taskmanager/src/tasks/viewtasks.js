@@ -2,14 +2,14 @@ import {HttpClient, json} from 'aurelia-fetch-client'
 export class ViewTasks{
 	taskData = {}
 	taskList = []
-	
+	searchString="";
 	
 	constructor() {}
 
 	activate() {
 		let client = new HttpClient();
 
-		client.fetch('http://localhost:8080/tasks?completed=false')
+		client.fetch('http://localhost:8080/tasks?completed=false&search='+encodeURIComponent(this.searchString))
 			.then(response => response.json())
 			.then(tasks => {
 				for (let row of tasks){
@@ -18,6 +18,9 @@ export class ViewTasks{
 				}
 				this.taskList = tasks;
 			});
+	}
+	search(){
+		this.activate();
 	}
 	updateTask(task){
 		let client = new HttpClient();
