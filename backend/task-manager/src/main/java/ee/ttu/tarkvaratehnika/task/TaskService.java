@@ -26,8 +26,11 @@ public class TaskService {
 //        return taskRepository.findAll();
 //    }
     
-    List<Task> getTasksByCompleted(boolean completed) {
-        return taskRepository.findByCompleted(completed);
+    List<Task> getTasksByCompletedAndSearchString(boolean completed, String searchString) {
+    	if (searchString == null || searchString.isEmpty()) {
+    		return taskRepository.findByCompleted(completed);
+    	}
+        return taskRepository.findByCompletedAndSearchString(completed, "%" + searchString + "%");
     }
 
     Task getTaskById(long taskId) {

@@ -19,8 +19,8 @@ public class TaskController {
     }
 
     @RequestMapping(value="/tasks", method=RequestMethod.GET)
-    public List<Task> getAllTasks(@RequestParam("completed") boolean completed) {
-        return taskService.getTasksByCompleted(completed);
+    public List<Task> getAllTasks(@RequestParam("completed") boolean completed,@RequestParam(value = "search", required = false) String searchString ) {
+        return taskService.getTasksByCompletedAndSearchString(completed, searchString);
     }
 
     @RequestMapping(value="/tasks/{id}", method=RequestMethod.GET)
