@@ -2,6 +2,12 @@ package ee.ttu.tarkvaratehnika.task;
 
 import org.springframework.web.bind.annotation.*;
 
+// import javax.servlet.http.HttpServletRequest;
+// import javax.servlet.http.HttpServletResponse;
+// import javax.servlet.ServletException;
+// import java.io.IOException;
+
+
 import java.util.List;
 
 @RestController
@@ -27,9 +33,16 @@ public class TaskController {
     public Task getTask(@PathVariable("id") long taskId) {
         return taskService.getTaskById(taskId);
     }
-    
+
     @RequestMapping(value="/tasks/{id}", method=RequestMethod.POST)
     public Task getTask(@PathVariable("id") long taskId, @RequestBody Task task) {
         return taskService.updateTask(taskId, task);
     }
+
+    @RequestMapping(value = "/callback", method = RequestMethod.GET)
+    protected void getCallback() {
+      int a = 5;
+    }
+
+
 }

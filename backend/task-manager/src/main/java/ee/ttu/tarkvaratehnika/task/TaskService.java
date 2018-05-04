@@ -36,4 +36,12 @@ public class TaskService {
     Task getTaskById(long taskId) {
         return taskRepository.findOne(taskId);
     }
+
+    boolean login(String username, String password){
+        return false;
+    }
+
+    boolean register(String username, String password){
+        return false;
+    }
 }

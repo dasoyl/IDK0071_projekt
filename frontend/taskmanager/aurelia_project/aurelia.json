@@ -64,6 +64,7 @@
           "aurelia-task-queue",
           "aurelia-templating",
           "aurelia-templating-binding",
+          "eventemitter3",
           {
             "name": "aurelia-templating-resources",
             "path": "../node_modules/aurelia-templating-resources/dist/amd",
@@ -84,7 +85,7 @@
           "jquery",
           {
             "name": "popper.js",
-            "path": "../node_modules/popper.js/dist/umd",
+            "path": "../node_modules/popper.js/dist/amd",
             "main": "popper"
           },
           {
