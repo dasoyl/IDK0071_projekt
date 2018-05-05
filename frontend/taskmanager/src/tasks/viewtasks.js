@@ -3,7 +3,7 @@ export class ViewTasks{
 	taskData = {}
 	taskList = []
 	searchString="";
-	
+	expanded=false;
 	constructor() {}
 
 	activate() {
@@ -21,6 +21,9 @@ export class ViewTasks{
 	}
 	search(){
 		this.activate();
+	}
+	expand(task){
+		task.expanded = !task.expanded;
 	}
 	updateTask(task){
 		let client = new HttpClient();
