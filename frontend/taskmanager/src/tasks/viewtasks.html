@@ -8,10 +8,13 @@
 	 		<label for="search">Search</label>
 	     	<input id="search" type="text" class="form-control" name="search" value.bind="searchString">
 	   	</div>
-	   		<div class="col-md-4 mx-auto">
+	   	<div class="col-md-4 mx-auto">
 	     	<button type="submit" class="btn btn-primary">SEARCH</button>
 	   	</div>
-   	</form>
+	   </form>
+	   <div class="col-md-12 mx-auto">
+		<label style="color:red" if.bind="errorMessage">${errorMessage}</label>
+	  </div>
 	<table style='width:100%'>
 		<tr>
 			<td valign=Top bgcolor="#FFC000">
@@ -32,19 +35,15 @@
 		<tr>
 			<td width=50% valign=Top>
 	  			<p>
-		  			<div repeat.for="task of taskList" if.bind="task.urgent && task.important">
-		  				<div css="visibility:${task.expanded === false ? "visible" : "hidden"}">
-	            			<form id="taskform" submit.delegate="expand(task)">
+		  			<div repeat.for="task of taskList | filter:true:true">
+		  				<div css="display:${task.expanded === true ? 'none' : 'inline'}">
 	            				<span>
 	            				${task.title}</span>
-	            				<button style="display: inline" type="submit" id="expand">+</button>
-	            			</form>
+	            				<button style="display: inline" click.delegate="invertExpanded(task)" id="expand">+</button>
 	            		</div>
-            			<div css="visibility:${task.expanded === true ? "visible" : "hidden"}">
-	    					<form id="taskform" submit.delegate="expand(task)">
-	    												
+            			<div css="display:${task.expanded === true ? 'inline' : 'none'}">
             					<form id="taskform" submit.delegate="updateTask(task)">
-        							<button style="display: inline" type="submit" id="expand">-</button>
+        							<button style="display: inline" click.delegate="invertExpanded(task)" id="expand">-</button>
         							<span>
 								 		<input id="title" type="text" class="form-control" name="title" value.bind="task.title" placeholder="">
 								   	</span>
@@ -64,14 +63,13 @@
       									<button type="submit" id="update" class="btn btn-primary">UPDATE</button>
       								</div>
 	      					 	</form>
-	      					</form>
       					</div>
     				</div>
 	    		</p>
 	  		</td>
 	 		<td width=50% valign=Top>
 	  			<p>
-					<div repeat.for="task of taskList"  if.bind="!task.urgent && task.important">
+					<div repeat.for="task of taskList  | filter:false:true">
             			<div class="card">
     						<div class="card-body">
             						<form id="taskform" submit.delegate="updateTask(task)">
@@ -118,7 +116,7 @@
 	 	<tr>
 	  		<td width=50% valign=Top>
 	  			<p> 
-	  				<div repeat.for="task of taskList" if.bind="task.urgent && !task.important">
+	  				<div repeat.for="task of taskList  | filter:true:false">
             			<div class="card">
     						<div class="card-body">
             						<form id="taskform" submit.delegate="updateTask(task)">
@@ -147,7 +145,7 @@
 	  		</td>
 	  		<td width=50% valign=Top>
 	  			<p>
-  					<div repeat.for="task of taskList"  if.bind="!task.urgent && !task.important">
+  					<div repeat.for="task of taskList | filter:false:false">
             			<div class="card">
     						<div class="card-body">
             						<form id="taskform" submit.delegate="updateTask(task)">

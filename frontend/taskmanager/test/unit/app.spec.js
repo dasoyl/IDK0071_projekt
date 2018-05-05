@@ -1,7 +1,15 @@
 import {App} from '../../src/app';
 
-describe('the app', () => {
-  it('says hello', () => {
-    expect(new App().message).toBe('Hello World!');
+describe('App', () => {
+  it('repects authenticated state from AuthService', () => {
+    const auth = {
+      isAuthenticated: () => {
+        return true;
+      },
+      authNotifier: {
+        on: ()=>{}
+      }
+    };
+    expect(new App(auth).authenticated).toBe(true);
   });
 });

@@ -1,30 +1,38 @@
 import {HttpClient, json} from 'aurelia-fetch-client'
 export class ViewTasks{
-	taskData = {}
-	taskList = []
+	taskList = [];
 	searchString="";
-	expanded=false;
-	constructor() {}
+	errorMessage="";
+	constructor() {
+
+	}
 
 	activate() {
-		let client = new HttpClient();
+		this.search();
+	}
 
+	search() {
+		let client = new HttpClient();
+		this.errorMessage = "";
 		client.fetch('http://localhost:8080/tasks?completed=false&search='+encodeURIComponent(this.searchString))
+			.catch(reason=>{
+				this.errorMessage = reason.message;
+			})
 			.then(response => response.json())
 			.then(tasks => {
-				for (let row of tasks){
-					row.isUrgent = row.urgent;
-					row.isImportant = row.important;
+				for (let task of tasks){
+					task.isUrgent = task.urgent;
+					task.isImportant = task.important;
+					task.expanded = true;
 				}
 				this.taskList = tasks;
 			});
 	}
-	search(){
-		this.activate();
-	}
-	expand(task){
+	
+	invertExpanded(task){
 		task.expanded = !task.expanded;
 	}
+
 	updateTask(task){
 		let client = new HttpClient();
 		task.urgent = task.isUrgent;
@@ -35,9 +43,17 @@ export class ViewTasks{
 		})
 			.then(response => response.json())
 			.then(data => {
-				//alert("Saved!");
-				this.activate();
+				this.search();
 		});
 	}
 
+}
+
+export class FilterValueConverter {
+    toView(items, urgent, important) {
+		if (!items){
+			return items;
+		}
+        return items.filter((item) => item.urgent === urgent && item.important === important);
+    }
 }

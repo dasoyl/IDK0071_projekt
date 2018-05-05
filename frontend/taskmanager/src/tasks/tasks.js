@@ -27,10 +27,6 @@ export class Tasks{
 				this.addedTaskData = data;
 				this.taskData = null;
 				//console.log("Received task: " + data.title);
-				
-				
 		});
-		
-		
 	}
 }

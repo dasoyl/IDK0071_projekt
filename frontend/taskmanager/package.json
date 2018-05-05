@@ -54,5 +54,9 @@
     "gulp-sourcemaps": "^2.0.0-alpha",
     "gulp-notify": "^2.2.0",
     "gulp-watch": "^4.3.11"
+  },
+  "scripts": {
+    "start": "au run -watch",
+    "test": "karma start"
   }
 }
