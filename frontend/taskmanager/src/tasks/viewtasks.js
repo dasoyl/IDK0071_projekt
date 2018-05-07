@@ -3,10 +3,18 @@ export class ViewTasks{
 	taskData = {}
 	taskList = []
 	searchString="";
-	
+
 	constructor() {}
 
 	activate() {
+		if (localStorage.getItem("access_token")){
+			console.log("Good, you are logged in");
+		} else {
+			console.log("UNAUTHENTICATED USER!!!");
+			window.location.replace("/");
+			return;
+		}
+
 		let client = new HttpClient();
 
 		client.fetch('http://localhost:8080/tasks?completed=false&search='+encodeURIComponent(this.searchString))
