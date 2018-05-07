@@ -11,7 +11,7 @@ export class AuthService {
     redirectUri: 'http://localhost:9000/callback',
     audience: 'https://tarkvara.eu.auth0.com/userinfo',
     responseType: 'token id_token',
-    scope: 'openid'
+    scope: 'openid profile email'
   });
 
   login() {
@@ -23,15 +23,47 @@ export class AuthService {
     this.router = Router;
   }
 
+  decode (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64));
+  };
+
   handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
         this.router.navigate('/');
         this.authNotifier.emit('authChange', { authenticated: true });
+        var id_token = authResult.idToken;
+        var acc_token = authResult.accessToken;
+        var decoded = this.decode(id_token);
+        if (decoded.nickname){
+          this.username = decoded.nickname;
+        } else{
+          this.username = decoded.name;
+        }
+        console.log("Username:");
+        console.log(this.username);
       } else if (err) {
         console.log(err);
       }
+
+
+    });
+  }
+
+  getUsername(id){
+    var tkn = localStorage.getItem('access_token');
+    console.log(tkn);
+    console.log(userId);
+    var auth0Manage = new auth0.Management({
+      domain: 'tarkvara.eu.auth0.com',
+      token: tkn
+    });
+    auth0Manage.getUser(id, function(a) {
+      console.log("callbacked user");
+      console.log(a);
     });
   }
 

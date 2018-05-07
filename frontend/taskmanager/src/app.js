@@ -21,6 +21,10 @@ export class App {
     this.auth.logout();
   }
 
+  updateUsername(){
+    this.username = this.auth.username;
+  }
+
   configureRouter(config, router){
         config.options.pushState = true;
         config.title = 'Tasks';
