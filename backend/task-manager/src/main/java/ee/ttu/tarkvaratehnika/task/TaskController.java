@@ -43,6 +43,4 @@ public class TaskController {
     protected void getCallback() {
       int a = 5;
     }
-
-
 }

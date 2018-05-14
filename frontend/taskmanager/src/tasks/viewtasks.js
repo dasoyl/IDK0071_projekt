@@ -9,7 +9,7 @@ export class ViewTasks{
 	activate() {
 		if (localStorage.getItem("access_token")){
 			console.log("Good, you are logged in");
-      this.search();
+      		this.search();
 		} else {
 			console.log("UNAUTHENTICATED USER!!!");
 			window.location.replace("/");
@@ -18,14 +18,13 @@ export class ViewTasks{
 
 		let client = new HttpClient();
 
-
+	}
 	search() {
 		let client = new HttpClient();
 		this.errorMessage = "";
 		client.fetch('http://localhost:8080/tasks?completed=false&search='+encodeURIComponent(this.searchString))
 			.catch(reason=>{
-				this.errorMessage = reason.message;
-			})
+				this.errorMessage = reason.message; })
 			.then(response => response.json())
 			.then(tasks => {
 				for (let task of tasks){
@@ -33,8 +32,7 @@ export class ViewTasks{
 					task.isImportant = task.important;
 					task.expanded = false;
 				}
-				this.taskList = tasks;
-			});
+				this.taskList = tasks; });
 	}
 	
 	invertExpanded(task){
