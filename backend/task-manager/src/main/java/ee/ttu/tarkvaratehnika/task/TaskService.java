@@ -16,16 +16,12 @@ public class TaskService {
     Task addTask(Task task) {
         return taskRepository.save(task);
     }
-    
+
     Task updateTask(long taskId, Task task) {
-    	task.setId(taskId);
+        task.setId(taskId);
         return taskRepository.save(task);
     }
 
-//    List<Task> getAllTasks() {
-//        return taskRepository.findAll();
-//    }
-    
     List<Task> getTasksByCompletedAndSearchString(boolean completed, String searchString) {
     	if (searchString == null || searchString.isEmpty()) {
     		return taskRepository.findByCompleted(completed);

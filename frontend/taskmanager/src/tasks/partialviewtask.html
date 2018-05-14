@@ -1,0 +1,25 @@
+<template>
+	<require from="bootstrap/css/bootstrap.css"></require>
+	<p>
+    </p>
+    <form id="taskform" submit.delegate="updateTask(task)">
+        <span>
+             <input id="title" type="text" class="form-control" name="title" value.bind="task.title" placeholder="">
+        </span>
+        <div >
+            <input id="description" type="text" class="form-control" name="description" value.bind="task.description" placeholder="">
+        </div>
+        <p></p>
+        <div>
+            <input id="isCompleted" type="checkbox" name="isCompleted" checked.bind="task.completed"> Status: 
+              <label if.bind="task.completed">  Task Completed </label>
+              <label if.bind="!task.completed">  Task in progress </label>
+              <br/>
+              <input id="isUrgent" type="checkbox" name="isUrgent" checked.bind="task.isUrgent"> Urgent?
+              <br/>
+              <input id="isImportant" type="checkbox" name="isImportant" checked.bind="task.isImportant"> Important?
+              <br/>
+              <button type="submit" id="update" class="btn btn-primary">UPDATE</button>
+          </div>
+      </form>
+</template>
