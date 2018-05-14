@@ -9,10 +9,10 @@ export class Tasks{
 
 	activate() {
 	//	let client = new HttpClient();
-//
+  //
 	//	client.fetch('http://localhost:8080/tasks')
-		//	.then(response => response.json())
-			//.then(tasks => this.taskList = tasks);
+	//	.then(response => response.json())
+	//.then(tasks => this.taskList = tasks);
 			if (localStorage.getItem("access_token")){
 				console.log("Good, you are logged in");
 			} else {
@@ -34,10 +34,5 @@ export class Tasks{
 				this.addedTaskData = data;
 				this.taskData = null;
 				//console.log("Received task: " + data.title);
-
-
-		});
-
-
-	}
-}
+	  });
+  }

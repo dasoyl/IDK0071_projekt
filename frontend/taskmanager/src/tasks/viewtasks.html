@@ -1,3 +1,4 @@
+
 <template>
 	  <require from="bootstrap/css/bootstrap.css"></require>
 	<p>
@@ -7,21 +8,24 @@
 	 		<label for="search">Search</label>
 	     	<input id="search" type="text" class="form-control" name="search" value.bind="searchString">
 	   	</div>
-	   		<div class="col-md-4 mx-auto">
+	   	<div class="col-md-4 mx-auto">
 	     	<button type="submit" class="btn btn-primary">SEARCH</button>
 	   	</div>
-   	</form>
+	   </form>
+	   <div class="col-md-12 mx-auto">
+		<label style="color:red" if.bind="errorMessage">${errorMessage}</label>
+	  </div>
 	<table style='width:100%'>
 		<tr>
 			<td valign=Top bgcolor="#FFC000">
-				<p  style='text-align:center;'>
+				<p style='text-align:center'>
 					<span  lang=en-US style='font-size:16.0pt;line-height:119%;font-family:Calibri; color:#063D71;font-weight:bold;'>
 				  		IMPORTANT &amp; URGENT
 					</span>
 				</p>
 			</td>
-			<td width=350 valign=Top bgcolor="#00B050" style='width:300pt;background:#00B050'>
-				<p class=MsoNormal style='text-align:center;text-align:center'>
+			<td width=50% valign=Top bgcolor="#00B050">
+				<p style='text-align:center'>
 					<span style='font-size:16.0pt;line-height:119%;font-family:Calibri;  color:#063D71;font-weight:bold;language:en-US'>
 				  		IMPORTANT &amp; not urgent
 			  		</span>
@@ -29,16 +33,21 @@
 	  		</td>
 		</tr>
 		<tr>
-			<td width=350 valign=Top style='width:262pt'>
-	  			<p class=MsoNormal>
-		  			<div repeat.for="task of taskList" if.bind="task.urgent && task.important">
-            			<div class="card">
-    						<div class="card-body">
-            						<form id="taskform" submit.delegate="updateTask(task)">
-        							<div >
+			<td width=50% valign=Top>
+	  			<p>
+		  			<div repeat.for="task of taskList | filter:true:true">
+		  				<div css="display:${task.expanded === true ? 'none' : 'inline'}">
+	            				<span>
+	            				${task.title}</span>
+	            				<button style="display: inline" click.delegate="invertExpanded(task)" id="expand">+</button>
+	            		</div>
+            			<div css="display:${task.expanded === true ? 'inline' : 'none'}">
+            					<form id="taskform" submit.delegate="updateTask(task)">
+        							<button style="display: inline" click.delegate="invertExpanded(task)" id="expand">-</button>
+        							<span>
 								 		<input id="title" type="text" class="form-control" name="title" value.bind="task.title" placeholder="">
-								   	</div>
-									<div css="visibility:${task.expanded === true ? "visible" : "hidden"}" >
+								   	</span>
+								   	<div >
 								 		<input id="description" type="text" class="form-control" name="description" value.bind="task.description" placeholder="">
 								   	</div>
 								   	<p></p>
@@ -53,14 +62,14 @@
       									<br/>
       									<button type="submit" id="update" class="btn btn-primary">UPDATE</button>
       								</div>
-      					   	</div>
+	      					 	</form>
       					</div>
     				</div>
 	    		</p>
 	  		</td>
-	 		<td width=350 valign=Top style='width:262pt'>
-	  			<p class=MsoNormal>
-					<div repeat.for="task of taskList"  if.bind="!task.urgent && task.important">
+	 		<td width=50% valign=Top>
+	  			<p>
+					<div repeat.for="task of taskList  | filter:false:true">
             			<div class="card">
     						<div class="card-body">
             						<form id="taskform" submit.delegate="updateTask(task)">
@@ -89,25 +98,25 @@
 	  		</td>
 		</tr>
 	 	<tr>
-	  		<td width=350 valign=Top bgcolor="#FFFF33" style='width:262pt;  background:#FFFF33'>
-	  			<p class=MsoNormal style='text-align:center;text-align:center'>
-	  				<span   lang=en-US style='font-size:16.0pt;line-height:119%;font-family:Calibri;  color:#063D71;font-weight:bold;language:en-US'>
+	  		<td width=50% valign=Top bgcolor="#FFFF33">
+	  			<p style='text-align:center'>	
+	  				<span style='font-size:16.0pt;line-height:119%;font-family:Calibri;  color:#063D71;font-weight:bold;language:en-US'>
 	  					not important &amp; URGENT
 					</span>
 				</p>
 	  		</td>
-	  		<td width=404 valign=Top bgcolor="#33CC33" style='width:262pt;background:#33CC33'>
-	  			<p class=MsoNormal style='text-align:center;text-align:center'>
-	  				<span   lang=en-US style='font-size:16.0pt;line-height:119%;font-family:Calibri;   color:#063D71;font-weight:bold;language:en-US'>
+	  		<td width=50% valign=Top bgcolor="#33CC33">
+	  			<p style='text-align:center'>
+	  				<span style='font-size:16.0pt;line-height:119%;font-family:Calibri;   color:#063D71;font-weight:bold;language:en-US'>
 	  					not important &amp; not urgent
 					</span>
 				</p>
 			</td>
 	 	</tr>
 	 	<tr>
-	  		<td width=350 valign=Top style='width:262pt;'>
-	  			<p class=MsoNormal> 
-	  				<div repeat.for="task of taskList" if.bind="task.urgent && !task.important">
+	  		<td width=50% valign=Top>
+	  			<p> 
+	  				<div repeat.for="task of taskList  | filter:true:false">
             			<div class="card">
     						<div class="card-body">
             						<form id="taskform" submit.delegate="updateTask(task)">
@@ -134,9 +143,9 @@
    					</div>
 	    		</p>
 	  		</td>
-	  		<td width=350 valign=Top style='width:262pt;'>
-	  			<p class=MsoNormal>
-  					<div repeat.for="task of taskList"  if.bind="!task.urgent && !task.important">
+	  		<td width=50% valign=Top>
+	  			<p>
+  					<div repeat.for="task of taskList | filter:false:false">
             			<div class="card">
     						<div class="card-body">
             						<form id="taskform" submit.delegate="updateTask(task)">
