@@ -3,6 +3,7 @@ export class ViewTasks{
 	taskList = [];
 	searchString="";
 	errorMessage="";
+	viewedTaskData = null;
 	constructor() {}
 
 	activate() {
@@ -30,7 +31,7 @@ export class ViewTasks{
 				for (let task of tasks){
 					task.isUrgent = task.urgent;
 					task.isImportant = task.important;
-					task.expanded = true;
+					task.expanded = false;
 				}
 				this.taskList = tasks;
 			});
@@ -38,6 +39,10 @@ export class ViewTasks{
 	
 	invertExpanded(task){
 		task.expanded = !task.expanded;
+	}
+
+	displayTask(task){
+		viewedTaskData = task;
 	}
 
 	updateTask(task){

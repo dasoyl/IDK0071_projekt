@@ -1,23 +1,23 @@
 
 <template>
-	  <require from="bootstrap/css/bootstrap.css"></require>
+	<require from="bootstrap/css/bootstrap.css"></require>
 	<p>
 	</p>
-	<form id="userform" submit.delegate="search()">
-	   	<div class="form-group col-md-4 mx-auto">
+	<form class="form-inline" submit.delegate="search()">
+	   	<div class="form-group col-md-4">
 	 		<label for="search">Search</label>
 	     	<input id="search" type="text" class="form-control" name="search" value.bind="searchString">
 	   	</div>
-	   	<div class="col-md-4 mx-auto">
+	   	<div class="col-md-6">
 	     	<button type="submit" class="btn btn-primary">SEARCH</button>
 	   	</div>
-	   </form>
-	   <div class="col-md-12 mx-auto">
+	</form>
+	<div class="col-md-12">
 		<label style="color:red" if.bind="errorMessage">${errorMessage}</label>
-	  </div>
+	</div>
 	<table style='width:100%'>
 		<tr>
-			<td valign=Top bgcolor="#FFC000">
+			<td valign=Top bgcolor="#FFC000"> 	
 				<p style='text-align:center'>
 					<span  lang=en-US style='font-size:16.0pt;line-height:119%;font-family:Calibri; color:#063D71;font-weight:bold;'>
 				  		IMPORTANT &amp; URGENT
@@ -36,33 +36,34 @@
 			<td width=50% valign=Top>
 	  			<p>
 		  			<div repeat.for="task of taskList | filter:true:true">
-		  				<div css="display:${task.expanded === true ? 'none' : 'inline'}">
-	            				<span>
-	            				${task.title}</span>
-	            				<button style="display: inline" click.delegate="invertExpanded(task)" id="expand">+</button>
+						<div css="display:${task.expanded === true ? 'none' : 'inline'}">
+	            			<span>
+								${task.title}
+							</span>
+	            			<button style="display: inline" click.delegate="invertExpanded(task)" id="expand">+</button>
 	            		</div>
             			<div css="display:${task.expanded === true ? 'inline' : 'none'}">
-            					<form id="taskform" submit.delegate="updateTask(task)">
-        							<button style="display: inline" click.delegate="invertExpanded(task)" id="expand">-</button>
-        							<span>
-								 		<input id="title" type="text" class="form-control" name="title" value.bind="task.title" placeholder="">
-								   	</span>
-								   	<div >
-								 		<input id="description" type="text" class="form-control" name="description" value.bind="task.description" placeholder="">
-								   	</div>
-								   	<p></p>
-	        						<div>
-	        							<input id="isCompleted" type="checkbox" name="isCompleted" checked.bind="task.completed"> Status: 
-      									<label if.bind="task.completed">  Task Completed </label>
-      									<label if.bind="!task.completed">  Task in progress </label>
-      									<br/>
-      									<input id="isUrgent" type="checkbox" name="isUrgent" checked.bind="task.isUrgent"> Urgent?
-      									<br/>
-      									<input id="isImportant" type="checkbox" name="isImportant" checked.bind="task.isImportant"> Important?
-      									<br/>
-      									<button type="submit" id="update" class="btn btn-primary">UPDATE</button>
-      								</div>
-	      					 	</form>
+            				<form id="taskform" submit.delegate="updateTask(task)">
+        						<button style="display: inline" click.delegate="invertExpanded(task)" id="expand">-</button>
+        						<span>
+								 	<input id="title" type="text" class="form-control" name="title" value.bind="task.title" placeholder="">
+								</span>
+								<div >
+									<input id="description" type="text" class="form-control" name="description" value.bind="task.description" placeholder="">
+								</div>
+								<p></p>
+	        					<div>
+	        						<input id="isCompleted" type="checkbox" name="isCompleted" checked.bind="task.completed"> Status: 
+      								<label if.bind="task.completed">  Task Completed </label>
+      								<label if.bind="!task.completed">  Task in progress </label>
+      								<br/>
+      								<input id="isUrgent" type="checkbox" name="isUrgent" checked.bind="task.isUrgent"> Urgent?
+      								<br/>
+      								<input id="isImportant" type="checkbox" name="isImportant" checked.bind="task.isImportant"> Important?
+      								<br/>
+      								<button type="submit" id="update" class="btn btn-primary">UPDATE</button>
+      							</div>
+	      					</form>
       					</div>
     				</div>
 	    		</p>
@@ -70,29 +71,36 @@
 	 		<td width=50% valign=Top>
 	  			<p>
 					<div repeat.for="task of taskList  | filter:false:true">
-            			<div class="card">
-    						<div class="card-body">
-            						<form id="taskform" submit.delegate="updateTask(task)">
-            						<div >
-								 		<input id="title" type="text" class="form-control" name="title" value.bind="task.title" placeholder="">
-								   	</div>
-        							<div >
-								 		<input id="description" type="text" class="form-control" name="description" value.bind="task.description" placeholder="">
-								   	</div>
-								   	<p></p>
-	        						<div>
-	        							<input id="isCompleted" type="checkbox" name="isCompleted" checked.bind="task.completed"> Status: 
-      									<label if.bind="task.completed">  Task Completed </label>
-      									<label if.bind="!task.completed">  Task in progress </label>
-      									<br/>
-      									<input id="isUrgent" type="checkbox" name="isUrgent" checked.bind="task.isUrgent"> Urgent?
-      									<br/>
-      									<input id="isImportant" type="checkbox" name="isImportant" checked.bind="task.isImportant"> Important?
-      									<br/>
-      									<button type="submit" id="update" class="btn btn-primary">UPDATE</button>
-      								</div>
-      					   	</div>
-      					</div>
+            			<div css="display:${task.expanded === true ? 'none' : 'inline'}">
+							<span>
+								${task.title}
+							</span>
+							<button style="display: inline" click.delegate="invertExpanded(task)" id="expand">+</button>
+						</div>
+						<div css="display:${task.expanded === true ? 'inline' : 'none'}">
+							<form id="taskform" submit.delegate="updateTask(task)">
+								<button style="display: inline" click.delegate="invertExpanded(task)" id="expand">-</button>
+								<span>
+									 <input id="title" type="text" class="form-control" name="title" value.bind="task.title" placeholder="">
+							   </span>
+							   <div >
+									 <input id="description" type="text" class="form-control" name="description" value.bind="task.description" placeholder="">
+							   </div>
+							   <p></p>
+								<div>
+									<input id="isCompleted" type="checkbox" name="isCompleted" checked.bind="task.completed"> Status: 
+									<label if.bind="task.completed">  Task Completed </label>
+									<label if.bind="!task.completed">  Task in progress </label>
+									<br/>
+									<input id="isUrgent" type="checkbox" name="isUrgent" checked.bind="task.isUrgent"> Urgent?
+									<br/>
+									<input id="isImportant" type="checkbox" name="isImportant" checked.bind="task.isImportant"> Important?
+									<br/>
+									<button type="submit" id="update" class="btn btn-primary">UPDATE</button>
+							  </div>
+							</form>
+					  </div>
+
       				</div>	   			 
 	   			</p>
 	  		</td>
@@ -117,59 +125,73 @@
 	  		<td width=50% valign=Top>
 	  			<p> 
 	  				<div repeat.for="task of taskList  | filter:true:false">
-            			<div class="card">
-    						<div class="card-body">
-            						<form id="taskform" submit.delegate="updateTask(task)">
-            						<div >
-								 		<input id="title" type="text" class="form-control" name="title" value.bind="task.title" placeholder="">
-								   	</div>
-        							<div >
-								 		<input id="description" type="text" class="form-control" name="description" value.bind="task.description" placeholder="">
-								   	</div>
-								   	<p></p>
-	        						<div>
-	        							<input id="isCompleted" type="checkbox" name="isCompleted" checked.bind="task.completed"> Status: 
-      									<label if.bind="task.completed">  Task Completed </label>
-      									<label if.bind="!task.completed">  Task in progress </label>
-      									<br/>
-      									<input id="isUrgent" type="checkbox" name="isUrgent" checked.bind="task.isUrgent"> Urgent?
-      									<br/>
-      									<input id="isImportant" type="checkbox" name="isImportant" checked.bind="task.isImportant"> Important?
-      									<br/>
-      									<button type="submit" id="update" class="btn btn-primary">UPDATE</button>
-      								</div>
-      					   	</div>
-      					</div>
+						<div css="display:${task.expanded === true ? 'none' : 'inline'}">
+							<span>
+								${task.title}
+							</span>
+							<button style="display: inline" click.delegate="invertExpanded(task)" id="expand">+</button>
+							</div>
+							<div css="display:${task.expanded === true ? 'inline' : 'none'}">
+								<form id="taskform" submit.delegate="updateTask(task)">
+									<button style="display: inline" click.delegate="invertExpanded(task)" id="expand">-</button>
+									<span>
+										<input id="title" type="text" class="form-control" name="title" value.bind="task.title" placeholder="">
+									</span>
+									<div >
+										<input id="description" type="text" class="form-control" name="description" value.bind="task.description" placeholder="">
+									</div>
+									<p></p>
+									<div>
+										<input id="isCompleted" type="checkbox" name="isCompleted" checked.bind="task.completed"> Status: 
+										<label if.bind="task.completed">  Task Completed </label>
+										<label if.bind="!task.completed">  Task in progress </label>
+										<br/>
+										<input id="isUrgent" type="checkbox" name="isUrgent" checked.bind="task.isUrgent"> Urgent?
+										<br/>
+										<input id="isImportant" type="checkbox" name="isImportant" checked.bind="task.isImportant"> Important?
+										<br/>
+										<button type="submit" id="update" class="btn btn-primary">UPDATE</button>
+									</div>
+								</form>
+							</div>
+						</div>
    					</div>
 	    		</p>
 	  		</td>
 	  		<td width=50% valign=Top>
-	  			<p>
-  					<div repeat.for="task of taskList | filter:false:false">
-            			<div class="card">
-    						<div class="card-body">
-            						<form id="taskform" submit.delegate="updateTask(task)">
-            						<div >
-								 		<input id="title" type="text" class="form-control" name="title" value.bind="task.title" placeholder="">
-								   	</div>
-        							<div>
-								 		<input id="description" type="text" class="form-control" name="description" value.bind="task.description" placeholder="">
-								   	</div>
-								   	<p></p>
-	        						<div>
-	        							<input id="isCompleted" type="checkbox" name="isCompleted" checked.bind="task.completed"> Status: 
-      									<label if.bind="task.completed">  Task Completed </label>
-      									<label if.bind="!task.completed">  Task in progress </label>
-      									<br/>
-      									<input id="isUrgent" type="checkbox" name="isUrgent" checked.bind="task.isUrgent"> Urgent?
-      									<br/>
-      									<input id="isImportant" type="checkbox" name="isImportant" checked.bind="task.isImportant"> Important?
-      									<br/>
-      									<button type="submit" id="update" class="btn btn-primary">UPDATE</button>
-      								</div>
-      					   	</div>
-      					</div>
-  					</div>
+					<p> 
+						<div repeat.for="task of taskList  | filter:false:false">									  <div css="display:${task.expanded === true ? 'none' : 'inline'}">
+							<span>
+								${task.title}
+							</span>
+							<button style="display: inline" click.delegate="invertExpanded(task)" id="expand">+</button>
+							</div>
+							<div css="display:${task.expanded === true ? 'inline' : 'none'}">
+								<form id="taskform" submit.delegate="updateTask(task)">
+									<button style="display: inline" click.delegate="invertExpanded(task)" id="expand">-</button>
+									<span>
+										<input id="title" type="text" class="form-control" name="title" value.bind="task.title" placeholder="">
+									</span>
+									<div >
+										<input id="description" type="text" class="form-control" name="description" value.bind="task.description" placeholder="">
+									</div>
+									<p></p>
+									<div>
+										<input id="isCompleted" type="checkbox" name="isCompleted" checked.bind="task.completed"> Status: 
+										<label if.bind="task.completed">  Task Completed </label>
+										<label if.bind="!task.completed">  Task in progress </label>
+										<br/>
+										<input id="isUrgent" type="checkbox" name="isUrgent" checked.bind="task.isUrgent"> Urgent?
+										<br/>
+										<input id="isImportant" type="checkbox" name="isImportant" checked.bind="task.isImportant"> Important?
+										<br/>
+										<button type="submit" id="update" class="btn btn-primary">UPDATE</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+							
 				</p>
 	  		</td>
 	 	</tr>
