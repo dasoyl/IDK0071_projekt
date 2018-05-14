@@ -3,13 +3,20 @@ export class ViewTasks{
 	taskList = [];
 	searchString="";
 	errorMessage="";
-	constructor() {
-
-	}
+	constructor() {}
 
 	activate() {
-		this.search();
-	}
+		if (localStorage.getItem("access_token")){
+			console.log("Good, you are logged in");
+      this.search();
+		} else {
+			console.log("UNAUTHENTICATED USER!!!");
+			window.location.replace("/");
+			return;
+		}
+
+		let client = new HttpClient();
+
 
 	search() {
 		let client = new HttpClient();

@@ -1,13 +1,18 @@
 <template>
   <require from="nav-bar.html"></require>
   <ul class="nav navbar-nav pull-right">
-    <li click.delegate="auth.login()" if.bind="!authenticated">
+    <button click.delegate="auth.login()" if.bind="!authenticated" class="button">Log in</button>
+    <button click.delegate="auth.logout()" if.bind="authenticated" class="button">Log out</button>
+    <!-- <li click.delegate="auth.login()" if.bind="!authenticated">
       <a>Log In</a>
     </li>
     <li click.delegate="auth.logout()" if.bind="authenticated">
       <a>Log Out</a>
-    </li>
+    </li> -->
   </ul>
+  <span class="navbar-text" if.bind="authenticated">
+    Hello, ${auth.username}
+  </span>
   <nav-bar router.bind="router" if.bind="authenticated"></nav-bar>
 
   <router-view></router-view>
