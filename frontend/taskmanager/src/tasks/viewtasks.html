@@ -20,20 +20,20 @@
 			<td valign=Top bgcolor="#FFC000"> 	
 				<p style='text-align:center'>
 					<span  lang=en-US style='font-size:16.0pt;line-height:119%;font-family:Calibri; color:#063D71;font-weight:bold;'>
-				  		IMPORTANT &amp; URGENT
+				  		DO TODAY (IMPORTANT &amp; URGENT)
 					</span>
 				</p>
 			</td>
 			<td width=50% valign=Top bgcolor="#00B050">
 				<p style='text-align:center'>
 					<span style='font-size:16.0pt;line-height:119%;font-family:Calibri;  color:#063D71;font-weight:bold;language:en-US'>
-				  		IMPORTANT &amp; not urgent
+				  		SCHEDULE in calendar (IMPORTANT &amp; not urgent)
 			  		</span>
 		  		</p>
 	  		</td>
 		</tr>
 		<tr>
-			<td width=50% valign=Top>
+			<td width=45% valign=Top>
 	  			<p>
 		  			<div repeat.for="task of taskList | filter:true:true">
 						<div css="display:${task.expanded === true ? 'none' : 'inline'}">
@@ -44,10 +44,10 @@
 	            		</div>
             			<div css="display:${task.expanded === true ? 'inline' : 'none'}">
             				<form id="taskform" submit.delegate="updateTask(task)">
-        						<button style="display: inline" click.delegate="invertExpanded(task)" id="expand">-</button>
-        						<span>
-								 	<input id="title" type="text" class="form-control" name="title" value.bind="task.title" placeholder="">
-								</span>
+        						<div>
+									<input width=70% id="title" type="text" name="title" value.bind="task.title" placeholder="">
+									<button style="display: inline" click.delegate="invertExpanded(task)" id="expand">-</button>
+								</div>
 								<div >
 									<input id="description" type="text" class="form-control" name="description" value.bind="task.description" placeholder="">
 								</div>
@@ -79,10 +79,10 @@
 						</div>
 						<div css="display:${task.expanded === true ? 'inline' : 'none'}">
 							<form id="taskform" submit.delegate="updateTask(task)">
-								<button style="display: inline" click.delegate="invertExpanded(task)" id="expand">-</button>
-								<span>
-									 <input id="title" type="text" class="form-control" name="title" value.bind="task.title" placeholder="">
-							   </span>
+								<div>
+									<input width=70% id="title" type="text" name="title" value.bind="task.title" placeholder="">
+									<button style="display: inline" click.delegate="invertExpanded(task)" id="expand">-</button>
+								</div>
 							   <div >
 									 <input id="description" type="text" class="form-control" name="description" value.bind="task.description" placeholder="">
 							   </div>
@@ -109,14 +109,14 @@
 	  		<td width=50% valign=Top bgcolor="#FFFF33">
 	  			<p style='text-align:center'>	
 	  				<span style='font-size:16.0pt;line-height:119%;font-family:Calibri;  color:#063D71;font-weight:bold;language:en-US'>
-	  					not important &amp; URGENT
+	  					Delegate tasks (not important &amp; URGENT)
 					</span>
 				</p>
 	  		</td>
 	  		<td width=50% valign=Top bgcolor="#33CC33">
 	  			<p style='text-align:center'>
 	  				<span style='font-size:16.0pt;line-height:119%;font-family:Calibri;   color:#063D71;font-weight:bold;language:en-US'>
-	  					not important &amp; not urgent
+	  					Not to do (not important &amp; not urgent)
 					</span>
 				</p>
 			</td>
@@ -133,10 +133,10 @@
 							</div>
 							<div css="display:${task.expanded === true ? 'inline' : 'none'}">
 								<form id="taskform" submit.delegate="updateTask(task)">
-									<button style="display: inline" click.delegate="invertExpanded(task)" id="expand">-</button>
-									<span>
-										<input id="title" type="text" class="form-control" name="title" value.bind="task.title" placeholder="">
-									</span>
+									<div>
+										<input width=70% id="title" type="text" name="title" value.bind="task.title" placeholder="">
+										<button style="display: inline" click.delegate="invertExpanded(task)" id="expand">-</button>
+									</div>
 									<div >
 										<input id="description" type="text" class="form-control" name="description" value.bind="task.description" placeholder="">
 									</div>
@@ -168,10 +168,10 @@
 							</div>
 							<div css="display:${task.expanded === true ? 'inline' : 'none'}">
 								<form id="taskform" submit.delegate="updateTask(task)">
-									<button style="display: inline" click.delegate="invertExpanded(task)" id="expand">-</button>
-									<span>
-										<input id="title" type="text" class="form-control" name="title" value.bind="task.title" placeholder="">
-									</span>
+									<div>
+										<input width=70% id="title" type="text" name="title" value.bind="task.title" placeholder="">
+										<button style="display: inline" click.delegate="invertExpanded(task)" id="expand">-</button>
+									</div>
 									<div >
 										<input id="description" type="text" class="form-control" name="description" value.bind="task.description" placeholder="">
 									</div>

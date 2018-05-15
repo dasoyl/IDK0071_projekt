@@ -40,7 +40,8 @@ public class TaskController {
     }
 
     @RequestMapping(value = "/callback", method = RequestMethod.GET)
-    protected void getCallback() {
+    protected String getCallback() {
       int a = 5;
+      return "ok";
     }
 }
