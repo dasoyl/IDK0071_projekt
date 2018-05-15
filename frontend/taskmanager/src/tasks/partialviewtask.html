@@ -1,7 +1,3 @@
-<template>
-	<require from="bootstrap/css/bootstrap.css"></require>
-	<p>
-    </p>
     <form id="taskform" submit.delegate="updateTask(task)">
         <span>
              <input id="title" type="text" class="form-control" name="title" value.bind="task.title" placeholder="">
@@ -22,4 +18,3 @@
               <button type="submit" id="update" class="btn btn-primary">UPDATE</button>
           </div>
       </form>
-</template>
